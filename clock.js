@@ -57,13 +57,12 @@ function drawTime(ctx, radius, operation) {
     now = new Date();
     if(operation == "reset") {
         now = stopWatchTimer;
+        
         if(stopWatchStatus == "running") {
-            console.log("running", stopWatchStatus);
             now.setSeconds(now.getSeconds() + 1);
             stopWatchTimer = now;
         }
         else {
-            console.log("stopped", stopWatchStatus);
             now.setHours(0, 0, 0, 0);
         }
     }
@@ -110,9 +109,10 @@ function checkTime(i) {
     return i;
 }
 
-reset = () => {
+function Reset() {
     clearInterval(interval); // stop the interval
     operation = "reset";
+    stopWatchStatus = "stopped";
     drawClock();
 }
 
@@ -124,15 +124,7 @@ showCurrentTime = () => {
 
 stopWatch = () => {
     operation = "reset";
-    if(stopWatchStatus == "running") {
-        // stopWatchTimer.setHours(0, 0, 0, 0);
-        stopWatchStatus = "stopped";
-        // drawClock();
-        reset();
-    }
-    else {
-        clearInterval(interval);
-        stopWatchStatus = "running"
-        interval = setInterval(drawClock, 1000);
-    }
+    clearInterval(interval);
+    stopWatchStatus = "running"
+    interval = setInterval(drawClock, 1000);
 }
