@@ -4,19 +4,21 @@ let radius = canvas.height / 2;
 let now, operation, stopWatchStatus;
 ctx.translate(radius, radius);
 radius = radius * 0.90
-let interval = setInterval(drawClock, 1000);
+
 let stopWatchTimer = new Date();
 stopWatchTimer.setHours(0, 0, 0, 0);
 
-function drawClock() {
+drawClock = () => {
     drawFace(ctx, radius);
     drawNumbers(ctx, radius);
     drawTime(ctx, radius, operation);
 }
 
+let interval = setInterval(drawClock, 1000);
+
 // design clock
-function drawFace(ctx, radius) {
-    var grad;
+drawFace = (ctx, radius) => {
+    let grad;
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2*Math.PI);
     ctx.fillStyle = 'white';
@@ -34,9 +36,9 @@ function drawFace(ctx, radius) {
     ctx.fill();
 }
 
-function drawNumbers(ctx, radius) {
-    var ang;
-    var num;
+drawNumbers = (ctx, radius) => {
+    let ang;
+    let num;
     ctx.font = radius*0.15 + "px arial";
     ctx.textBaseline="middle";
     ctx.textAlign="center";
@@ -53,11 +55,11 @@ function drawNumbers(ctx, radius) {
 }
 
 // clock working
-function drawTime(ctx, radius, operation) {
+drawTime = (ctx, radius, operation) => {
     now = new Date();
     if(operation == "reset") {
         now = stopWatchTimer;
-        
+
         if(stopWatchStatus == "running") {
             now.setSeconds(now.getSeconds() + 1);
             stopWatchTimer = now;
@@ -67,9 +69,9 @@ function drawTime(ctx, radius, operation) {
         }
     }
 
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
     //hour
     hour=hour%12;
     hour=(hour*Math.PI/6)+
@@ -90,7 +92,7 @@ function drawTime(ctx, radius, operation) {
     hour + ":" + minute + ":" + second;
 }
 
-function drawHand(ctx, pos, length, width) {
+drawHand = (ctx, pos, length, width) => {
     ctx.beginPath();
     ctx.lineWidth = width;
     ctx.lineCap = "round";
@@ -102,14 +104,14 @@ function drawHand(ctx, pos, length, width) {
 }
 
 // HH:MM:SS clock
-function checkTime(i) {
+checkTime = (i) => {
     if (i < 10) { 
         i = "0" + i 
     };
     return i;
 }
 
-function Reset() {
+reset = () => {
     clearInterval(interval); // stop the interval
     operation = "reset";
     stopWatchStatus = "stopped";
