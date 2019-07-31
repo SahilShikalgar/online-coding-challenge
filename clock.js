@@ -111,7 +111,7 @@ checkTime = (i) => {
     return i;
 }
 
-reset = () => {
+Reset = () => {
     clearInterval(interval); // stop the interval
     operation = "reset";
     stopWatchStatus = "stopped";

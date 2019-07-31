@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <style>
+         /* button {
+             font-size: 18px;
+         } */
+         #txt {
+             padding: .2em;
+             margin: .5em;
+             font-weight: 600;
+             font-size: 32px;
+         }
+        </style>
     </head>
     <body>
         <canvas id="canvas" width="400" height="400" style="background-color:#333"></canvas>
         <div id="txt"></div>
         <button onclick="showCurrentTime()">Current Time</button>
         <button onclick="stopWatch()">Timer</button>
-        <button onclick="reset()">Reset</button>
+        <button onclick="Reset()">Reset</button>
         <script src="clock.js"></script>
     </body>
 </html>
